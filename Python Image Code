@@ -1,5 +1,6 @@
 ## Python code to create a numeric image
 ## Each Section is a new line that can be inputted into a Jupyter Notebook and run
+## You will need to use the 'DigitsDataset.csv' file provided in this repository (code [that needs updated to reference this file] is below in ***Section 3***)
 
 #-------------------Section 1----------------------------
 #import libraries
