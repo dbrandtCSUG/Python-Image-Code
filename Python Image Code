@@ -32,8 +32,9 @@ print(digits.images[0:10])
 
 #-------------------Section 3----------------------------
 #loading data
-#NOTE!!! replace the filename with your file name
-filename = "C:/Users/dbrand/Desktop/MIS542/DigitsDataset.csv"
+#NOTE!!! replace the filename with the file path where you stored this file
+#NOTE!!! a copy of the DigitsDataset.csv can be found in this repository
+filename = "C:/DigitsDataset.csv"
 df = pd.read_csv(filename)
 
 #read dataset to check it reads okay
