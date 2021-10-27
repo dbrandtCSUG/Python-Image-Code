@@ -1,0 +1,124 @@
+## Python code to create a numeric image
+## Each Section is a new line that can be inputted into a Jupyter Notebook and run
+
+#-------------------Section 1----------------------------
+#import libraries
+%matplotlib inline
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn import datasets
+
+import matplotlib.pyplot as plt
+
+
+#-------------------Section 2----------------------------
+#find datasets values to build csv file {numbers 0 - 9}
+#for each image, column 0 to 63 = pixel intensity values for 8x8 image
+#need to add 'labels' column in last column of csv
+from sklearn import datasets
+import matplotlib.pyplot as plt 
+ 
+digits = datasets.load_digits()
+X = digits.data 
+ 
+y = digits.target 
+
+print(digits.images[0:10])
+
+#NOTE: this will print out the numbers in a matrix format
+
+
+#-------------------Section 3----------------------------
+#loading data
+#NOTE!!! replace the filename with your file name
+filename = "C:/Users/dbrand/Desktop/MIS542/DigitsDataset.csv"
+df = pd.read_csv(filename)
+
+#read dataset to check it reads okay
+df.head()
+
+#NOTE: this will read the CSV file noted above, 5 rows by 65 columns
+#NOTE: the sample CSV file is in Repository
+
+
+#-------------------Section 4----------------------------
+#get column names, except last column {labels}
+pixel_colnames = df.columns[:-1]
+pixel_colnames
+
+
+#-------------------Section 5----------------------------
+#get all columns except the label column for first image {0}
+image_values = df.loc[0,pixel_colnames].values
+
+#view image as array :: note need to reshape as 8x8 array to view the image
+image_values.reshape(8,8)
+
+
+#-------------------Section 6----------------------------
+#visualize the image using imshow method, gray color map
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+
+#NOTE: This will show the image for the number 0 to test
+
+
+#-------------------Section 7----------------------------
+#create a 5x5 subplot using the plt.subplot command
+
+plt.figure(figsize=(10,2))
+
+##first image {0}
+plt.subplot(1,5,1)
+image_values = df.loc[0, pixel_colnames].values
+image_label = df.loc[0, 'label']
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+plt.title('Label:' + str(image_label))
+
+##second image {1}
+plt.subplot(1,5,2) #update as 2nd image
+image_values = df.loc[1, pixel_colnames].values #update df.loc to 1
+image_label = df.loc[1, 'label'] #update df.loc to 1
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+plt.title('Label:' + str(image_label))
+
+##third image {2}
+plt.subplot(1,5,3) #update as 3nd image
+image_values = df.loc[2, pixel_colnames].values #update df.loc to 2
+image_label = df.loc[2, 'label'] #update df.loc to 2
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+plt.title('Label:' + str(image_label))
+
+##fourth image {3}
+plt.subplot(1,5,4) #update as 4th image
+image_values = df.loc[3, pixel_colnames].values #update df.loc to 3
+image_label = df.loc[3, 'label'] #update df.loc to 3
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+plt.title('Label:' + str(image_label))
+
+##third image {4}
+plt.subplot(1,5,5) #update as 5th image
+image_values = df.loc[4, pixel_colnames].values #update df.loc to 4
+image_label = df.loc[4, 'label'] #update df.loc to 4
+plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+plt.title('Label:' + str(image_label))
+
+NOTE: This will create images from 0 to 4
+
+
+#-------------------Section 8----------------------------
+#lots of repeated code above, so streamline with 'for loop'
+plt.figure(figsize=(10,2))
+
+for index in range(0,5):
+    
+    plt.subplot(1,5,1 + index)
+    image_values = df.loc[index, pixel_colnames].values
+    image_label = df.loc[index, 'label']
+    plt.imshow(image_values.reshape(8,8), cmap = 'gray')
+    plt.title('Label: ' + str(image_label))
+
+#NOTE: As noted, this streamlines with a 'for loop'
+
+###END OF CODE###
